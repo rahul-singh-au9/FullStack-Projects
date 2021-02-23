@@ -1,0 +1,65 @@
+https://www.mongodb.com/cloud/atlas
+
+-----mongoDb cloud atlas version----
+
+1.
+start free
+    |
+    V
+create account
+    |
+    V
+build cluster
+    |
+    V
+choose shared cluster
+    |
+    V
+create cluster
+
+
+2.
+security --> Database access
+                |
+                V
+            Add a New Database User
+                |
+                V
+            fill in userName and password
+                |
+                V
+            add user
+
+
+
+
+3.
+security --> Database access
+                |
+                V
+             Network Access
+                |
+                V
+            add IP address
+                |
+                V
+            click on add current ip address
+                |
+                V
+            click on confirm
+
+
+4.
+Go back to clusters
+          |
+          V
+connect the cluster
+          |
+          V
+connect your application
+          |
+          V
+Add your connection string into your application code
+          |
+          V
+copy the code and use the url in your code
