@@ -1,21 +1,20 @@
 // ALL REQUEST CONTROLLERS
 const postMessage = require("../models/post")
 
-
 // POST REQUEST
 const createPost = async (req, res) => {
-    const { name, email, phone, address } = req.body;
+    const { title, message, selectedFile, creator, tags } = req.body;
 
-    const createdPost = new postMessage({ name, email, phone, address });
+    const createdPost = new postMessage({ title, message, selectedFile, creator, tags });
 
     try {
         insertedPost = await createdPost.save();
 
-        res.status(201).send(insertedPost);
+        res.status(201).json(insertedPost);
     }
 
     catch (err) {
-        res.status(409).send(err);
+        res.status(409).json(err);
     }
 };
 
@@ -24,7 +23,7 @@ const getPosts = async (req, res) => {
     try {
         const posts = await postMessage.find();
 
-        res.send(posts);
+        res.status(200).json(posts);
     }
 
     catch (error) {
@@ -32,35 +31,37 @@ const getPosts = async (req, res) => {
     }
 }
 
+
 // GET INDIVISUAL REQUEST
 const getPost = async (req, res) => {
     try {
         const _id = req.params.id
         const post = await postMessage.findById(_id);
 
-        res.status(200).send(post);
+        res.status(200).json(post);
     }
 
     catch (err) {
-        res.status(404).send(err);
+        res.status(404).json(err);
     }
 };
 
 // UPDATE INDIVISUAL REQUEST
 const updatePost = async (req, res) => {
-    const user = req.body;
+    const post = req.body;
 
     try {
         const _id = req.params.id
-        const newPost = await postMessage.findByIdAndUpdate(_id, user, {new: true});
+        const updatedPost = await postMessage.findByIdAndUpdate(_id, post, {new: true});
 
-        res.status(204).send(newPost);
+        res.status(204).json(updatedPost);
     }
 
     catch (err) {
-        res.status(404).send(err);
+        res.status(404).json(err);
     }
 };
+
 
 // DELETE INDIVISUAL REQUEST
 const deletePost = async (req, res) => {
@@ -69,7 +70,7 @@ const deletePost = async (req, res) => {
         const _id = req.params.id
         const post = await postMessage.findByIdAndDelete(_id);
 
-        res.status(204).send(post);
+        res.status(204).json(post);
     }
 
     catch(err) {
@@ -77,4 +78,19 @@ const deletePost = async (req, res) => {
     }
 };
 
-module.exports = {createPost, getPosts, getPost, updatePost, deletePost}
+// LIKE POST
+const likePost = async (req, res) => {
+    try{
+        const _id = req.params.id
+        const post = await postMessage.findById(_id);
+
+        const updatedPost = await postMessage.findByIdAndUpdate(_id, { likeCount: post.likeCount+1}, { new: true})
+
+        res.json(updatedPost);
+
+    }catch(err){
+        res.status(404).send(err)
+    }
+}
+
+module.exports = {createPost, getPosts, getPost, updatePost, deletePost, likePost}

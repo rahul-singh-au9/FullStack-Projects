@@ -16,13 +16,13 @@ const App = () => {
     }, [dispatch]);
 
     return (
-        <Container maxWidth = "lg">
+        <Container maxWidth="lg">
 
             <AppBar className={classes.appBar} position="static" color="inherit">
 
-                <Typography className={classes.heading} variant="h2" align="center">POST-MAN</Typography>
+                <Typography className={classes.heading} variant="h2" align="center">MEMORIES</Typography>
 
-                <img className={classes.image} src="https://i.ibb.co/DtQRbdF/writing.png" height="60"  alt="icon"/>
+                <img className={classes.image} src="https://i.ibb.co/DtQRbdF/writing.png" height="60" width="60" alt="icon"/>
 
             </AppBar>
 

@@ -5,21 +5,18 @@ const postSchema = mongoose.Schema({
 
   title: {
     type: String,
-    minlength: 3,
     required: true,
     trim: true
   },
 
   message: {
     type: String,
-    minlength: 10,
     required: true,
     trim: true
   },
 
   creator: {
     type: String,
-    minlength: 3,
     required: true,
     trim: true
   },

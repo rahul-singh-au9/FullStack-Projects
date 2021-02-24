@@ -1,6 +1,6 @@
 const express = require("express");
 
-const {createPost, getPosts, getPost, updatePost, deletePost} = require("../controllers/postControllers");
+const {getPosts, getPost, createPost, updatePost, deletePost, likePost} = require("../controllers/postControllers");
 
 const postRouter = express.Router();
 
@@ -9,5 +9,6 @@ postRouter.post("/", createPost);
 postRouter.get("/:id", getPost);
 postRouter.delete("/:id", deletePost);
 postRouter.patch("/:id", updatePost);
+postRouter.patch('/:id/likePost', likePost);
 
 module.exports = postRouter;
