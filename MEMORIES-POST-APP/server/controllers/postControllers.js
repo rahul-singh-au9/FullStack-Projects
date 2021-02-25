@@ -46,13 +46,14 @@ const getPost = async (req, res) => {
     }
 };
 
+
 // UPDATE INDIVISUAL REQUEST
 const updatePost = async (req, res) => {
     const post = req.body;
 
     try {
         const _id = req.params.id
-        const updatedPost = await postMessage.findByIdAndUpdate(_id, post, {new: true});
+        const updatedPost = await postMessage.findByIdAndUpdate(_id, {...post, _id}, {new: true});
 
         res.status(204).json(updatedPost);
     }
