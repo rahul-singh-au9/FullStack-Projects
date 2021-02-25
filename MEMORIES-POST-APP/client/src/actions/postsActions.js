@@ -1,5 +1,6 @@
 import * as api from '../api/index.js';
 
+// GET ALL THE POSTS
 export const getPosts = () => async (dispatch) => {
   try {
     const { data } = await api.fetchPosts();
@@ -14,6 +15,7 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
+// CREATE A POST
 export const createPost = (post) => async (dispatch) => {
   try {
     const { data } = await api.createPost(post);
@@ -28,6 +30,7 @@ export const createPost = (post) => async (dispatch) => {
   }
 };
 
+// UPDATE A POST
 export const updatePost = (id,post) => async (dispatch) => {
   try{
     const { data } = await api.updatePost(id, post);
@@ -35,9 +38,24 @@ export const updatePost = (id,post) => async (dispatch) => {
     dispatch({
       type: "UPDATE",
       payload: data
-    })
+    });
 
   }catch (error) {
     console.log(error);
   }
-}
+};
+
+// DELETE A POST
+export const deletePost = (id) => async (dispatch) => {
+  try{
+    await api.deletePost(id);
+
+    dispatch({
+      type: "DELETE",
+      payload: id
+    });
+
+  } catch (error){
+    console.log(error);
+  }
+};

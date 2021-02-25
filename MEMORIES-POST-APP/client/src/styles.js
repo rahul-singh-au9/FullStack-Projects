@@ -17,6 +17,7 @@ heading: {
 
 image: {
         marginLeft: '15px',
+        marginTop: '12px'
 },
 
 }));
