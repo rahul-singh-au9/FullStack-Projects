@@ -3,8 +3,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 require("./db/connection");
 const postRouter = require("./routes/postRouters");
+const dotenv = require("dotenv");
+dotenv.config();
 
-const PORT = process.env.PORT || 3001;
 
 // Init app
 const app = express();
@@ -27,7 +28,7 @@ app.get("*", (req, res) => {
 })
 
 // CONNECTING TO THE SERVER
-app.listen(PORT, () => {
-  console.log(`Server running on port: http://localhost:${PORT}`)
+app.listen(process.env.PORT, () => {
+  console.log(`Server running on port: http://localhost:${process.env.PORT}`)
 }
 )
