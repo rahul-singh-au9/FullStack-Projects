@@ -1,8 +1,10 @@
-import {FETCH_ALL, CREATE, DELETE, UPDATE, LIKE} from "../constants/actionTypes";
-import * as api from '../api/index.js';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from "../constants/actionTypes";
+import * as api from "../api/index.js";
 
-// GET ALL THE POSTS
+
+// FETCH ALL THE POSTS
 export const getPosts = () => async (dispatch) => {
+
   try {
     const { data } = await api.fetchPosts();
 
@@ -16,9 +18,11 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
-// CREATE A POST
+// CREATE A NEW POST
 export const createPost = (post) => async (dispatch) => {
+
   try {
+
     const { data } = await api.createPost(post);
 
     dispatch({
@@ -27,13 +31,14 @@ export const createPost = (post) => async (dispatch) => {
     });
 
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
 
 // UPDATE A POST
-export const updatePost = (id,post) => async (dispatch) => {
-  try{
+export const updatePost = (id, post) => async (dispatch) => {
+
+  try {
     const { data } = await api.updatePost(id, post);
 
     dispatch({
@@ -41,29 +46,15 @@ export const updatePost = (id,post) => async (dispatch) => {
       payload: data
     });
 
-  }catch (error) {
-    console.log(error);
-  }
-};
-
-// DELETE A POST
-export const deletePost = (id) => async (dispatch) => {
-  try{
-    await api.deletePost(id);
-
-    dispatch({
-      type: DELETE,
-      payload: id
-    });
-
-  } catch (error){
-    console.log(error);
+  } catch (error) {
+    console.log(error.message);
   }
 };
 
 // LIKE A POST
 export const likePost = (id) => async (dispatch) => {
-  try{
+
+  try {
 
     const { data } = await api.likePost(id);
 
@@ -73,6 +64,24 @@ export const likePost = (id) => async (dispatch) => {
     });
 
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
+  }
+};
+
+// DELTE A POST
+
+export const deletePost = (id) => async (dispatch) => {
+
+  try {
+
+    await api.deletePost(id);
+
+    dispatch({
+      type: DELETE,
+      payload: id
+    });
+
+  } catch (error) {
+    console.log(error.message);
   }
 };

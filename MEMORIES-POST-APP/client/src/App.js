@@ -1,53 +1,46 @@
-import React, {useEffect, useState} from "react";
-import useStyles from "./styles";
-import {useDispatch} from "react-redux";
-import {getPosts} from "./actions/postsActions";
-import {Container, AppBar, Typography, Grow, Grid} from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
+import { useDispatch } from "react-redux";
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
+import { getPosts } from "./actions/postsActions";
+import useStyles from "./styles";
 
 const App = () => {
-    const classes = useStyles();
-    const dispatch = useDispatch();
-    const [currentId, setCurrentId] = useState(null);
+  const [currentId, setCurrentId] = useState(0);
+  const dispatch = useDispatch();
+  const classes = useStyles();
 
-    useEffect(() => {
-      dispatch(getPosts())
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [currentId, dispatch]);
 
-    }, [dispatch, currentId]);
-
-    return (
-        <Container maxWidth="lg">
-
-            <AppBar className={classes.appBar} position="static" color="inherit">
-
-                <Typography className={classes.heading} variant="h2" align="center">
-                  MEMORIES
-                  <img className={classes.image} src="https://i.ibb.co/DtQRbdF/writing.png" height="60" alt="icon"
-                  />
-                </Typography>
-
+  return (
+      <Container maxWidth="lg">
+          <AppBar className={classes.appBar} position="static" color="inherit">
+              <Typography className={classes.heading} variant="h2" align="center">
+                Memory Bank
+              </Typography>
+              <img className={classes.image} src="https://i.ibb.co/DtQRbdF/writing.png" alt="icon" height="60" />
             </AppBar>
 
             <Grow in>
-              <Container>
-                  <Grid className={classes.mobile}container justify="space-between" alignItems="stretch" spacing={3}>
+                <Container>
+                  <Grid container justify="space-between" alignItems="stretch" spacing={3}>
 
                       <Grid item xs={12} sm={7}>
-                        <Posts setCurrentId={setCurrentId}/>
+                        <Posts setCurrentId={setCurrentId} />
                       </Grid>
 
                       <Grid item xs={12} sm={4}>
-                        <Form currentId={currentId} setCurrentId={setCurrentId}/>
+                        <Form currentId={currentId} setCurrentId={setCurrentId} />
                       </Grid>
 
                   </Grid>
-
-              </Container>
+                </Container>
             </Grow>
-
-        </Container>
-    );
-}
+      </Container>
+  );
+};
 
 export default App;

@@ -1,6 +1,14 @@
+// CREATE ACTION
 export const CREATE = "CREATE";
-export const UPDATE = "UPDATE";
-export const DELETE = "DELETE";
-export const FETCH_ALL = "FETCH_ALL";
-export const LIKE = "LIKE";
 
+// UPDATE ACTION
+export const UPDATE = "UPDATE";
+
+// DELETE ACTION
+export const DELETE = "DELETE";
+
+// FETCH ALL ACTION
+export const FETCH_ALL = "FETCH_ALL";
+
+// LIKE ACTION
+export const LIKE = "LIKE";
