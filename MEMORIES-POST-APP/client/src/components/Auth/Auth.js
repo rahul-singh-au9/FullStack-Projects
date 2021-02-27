@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import {useDispatch} from "react-redux";
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Avatar, Button, Paper, Grid, Typography, Container } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { GoogleLogin } from "react-google-login";
+import {AUTH} from "../../constants/actionTypes";
 import useStyles from "./styles";
 import Input from "./Input";
 import Icon from "./Icon";
@@ -12,6 +15,8 @@ const Auth = () => {
     const [isSignup, setIsSignup] = useState(false);
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,7 +34,20 @@ const Auth = () => {
     }
 
     const googleSuccess = (res) => {
-        console.log(res)
+        // console.log(res)
+        // optional chaining operator
+        // the question mark operator is a special operator that's not going to throw an error if we don't have access to res object
+        const result = res?.profileObj;
+        const token = res?.tokenId;
+
+        try {
+        dispatch({ type: AUTH, data: { result, token } });
+
+        history.push("/");
+
+        } catch (error) {
+        console.log(error);
+        }
     }
 
     const googleError = () => alert('Google Sign In was unsuccessful. Try again later');

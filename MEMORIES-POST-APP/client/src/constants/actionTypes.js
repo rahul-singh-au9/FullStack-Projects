@@ -12,3 +12,9 @@ export const FETCH_ALL = "FETCH_ALL";
 
 // LIKE ACTION
 export const LIKE = "LIKE";
+
+// AUTH ACTION
+export const AUTH = "AUTH";
+
+// LOG-OUT ACTION
+export const LOGOUT = "LOGOUT";
