@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // POST SCHEMA FOR VALIDATION
-const postSchema = mongoose.Schema({
+const postsSchema = mongoose.Schema({
 
   title: {
     type: String,
@@ -41,7 +41,7 @@ const postSchema = mongoose.Schema({
 
 // MODEL
 // we will create a new collection
-const postMessage = new mongoose.model("postMessage", postSchema);
+const postMessage = new mongoose.model("postMessage", postsSchema);
 
 // export postMessage to other files
 module.exports = postMessage;

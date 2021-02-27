@@ -1,5 +1,5 @@
 // ALL REQUEST CONTROLLERS
-const postMessage = require("../models/post")
+const postMessage = require("../models/postsModel")
 
 // POST REQUEST
 const createPost = async (req, res) => {

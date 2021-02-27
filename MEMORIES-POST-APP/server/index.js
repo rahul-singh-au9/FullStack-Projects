@@ -2,7 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("./db/connection");
-const postRouter = require("./routes/postRouters");
+const postRoutes = require("./routes/postsRouter");
+const userRoutes = require("./routes/userRouter");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -20,7 +21,10 @@ app.get("/", (req, res)=>{
 })
 
 // POST ROUTES
-app.use("/posts", postRouter)
+app.use("/posts", postRoutes)
+
+// USER ROUTES
+app.use("/user", userRoutes)
 
 // ROUTES THAT NOT BEEN DEFINED
 app.get("*", (req, res) => {
