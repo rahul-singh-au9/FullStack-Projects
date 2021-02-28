@@ -83,9 +83,24 @@ const deletePost = async (req, res) => {
 const likePost = async (req, res) => {
     try{
         const _id = req.params.id
+
+        if(!req.userId) return res.json({message: "Unauthenticated"});
+
         const post = await postMessage.findById(_id);
 
-        const updatedPost = await postMessage.findByIdAndUpdate(_id, { likeCount: post.likeCount+1}, { new: true})
+        // checking if the id exists for the person who is liking
+        const index = post.likes.findIndex((_id) => _id === String(req.userId));
+
+        if(index === -1){
+            // like the post (if the id does not exists means the person can like the post)
+            post.likes.push(req.userId);
+
+        } else{
+            // dislike the post
+            post.likes = post.likes.filter((_id) => _id !== String(req.userId));
+        };
+
+        const updatedPost = await postMessage.findByIdAndUpdate(_id, post, { new: true});
 
         res.json(updatedPost);
 
