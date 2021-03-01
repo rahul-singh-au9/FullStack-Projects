@@ -7,14 +7,16 @@ const jwt = require("jsonwebtoken");
 
 const sercet = "this is a super sercet key for hashing";
 
-const auth = (req, res, next) => {
+const auth = async (req, res, next) => {
 
   try{
 
-    const token = req.headers.authorization.split("")[1];
+    const token = req.headers.authorization.split(" ")[1];
+
     const isCustomAuth = token.length < 500;
 
     let decodeData;
+
 
     if(token && isCustomAuth){
       decodeData = jwt.verify(token, sercet);
@@ -23,7 +25,7 @@ const auth = (req, res, next) => {
 
     } else{
 
-      decodeData = jwt.verify(token);
+      decodeData = jwt.decode(token);
 
       req.userId = decodeData?.sub;
                               // sub is simply google's name for a specific id that         differentiates every single google user

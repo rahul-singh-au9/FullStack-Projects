@@ -53,10 +53,11 @@ export const updatePost = (id, post) => async (dispatch) => {
 
 // LIKE A POST
 export const likePost = (id) => async (dispatch) => {
+  const user = JSON.parse(localStorage.getItem("profile"));
 
   try {
 
-    const { data } = await api.likePost(id);
+    const { data } = await api.likePost(id, user?.token);
 
     dispatch({
       type: LIKE,

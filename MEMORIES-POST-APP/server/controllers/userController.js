@@ -6,11 +6,11 @@ const sercet = "this is a super sercet key for hashing";
 
 const signup = async (req, res) => {
 
-  const {firstName, lastName, email, password } = req.body();
+  const {firstName, lastName, email, password } = req.body;
 
   try{
 
-    const oldUser = await userModel.fineOne({email});
+    const oldUser = await userModel.findOne({email});
 
     if(oldUser) {
       return res.status(400).json({message: "User already Exists!"})
@@ -24,13 +24,13 @@ const signup = async (req, res) => {
       name: `${firstName} ${lastName}`
     });
 
-    const token = jwt.sign({email: result.email, id: result._ID}, sercet, {expiresIn: "1h"});
+    const token = jwt.sign({email: result.email, id: result._id}, sercet, {expiresIn: "1h"});
 
     res.status(201).json({result, token});
 
   }catch(err){
 
-    res.status(500).josn({message: "Something went wrong!"});
+    res.status(500).json({message: "Something went wrong!"});
 
     console.log(err);
   }
@@ -39,14 +39,14 @@ const signup = async (req, res) => {
 
 const signin = async (req, res) => {
 
-  const {email, password } = req.body();
+  const {email, password } = req.body;
 
   try {
 
     const oldUser = await UserModal.findOne({ email });
 
     if(!oldUser){
-      return res.status(404).josn({message: "User doesn't exist"})
+      return res.status(404).json({message: "User doesn't exist"})
     };
 
     const isPasswordCorrect = await bcrypt.compare(password, oldUser.password);

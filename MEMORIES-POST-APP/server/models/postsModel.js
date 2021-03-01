@@ -15,6 +15,10 @@ const postsSchema = mongoose.Schema({
     trim: true
   },
 
+  name: {
+    type: String,
+  },
+
   creator: {
     type: String,
     required: true,

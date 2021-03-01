@@ -3,9 +3,10 @@ const postMessage = require("../models/postsModel")
 
 // POST REQUEST
 const createPost = async (req, res) => {
-    const { title, message, selectedFile, creator, tags } = req.body;
+    const post = req.body;
 
-    const createdPost = new postMessage({ title, message, selectedFile, creator, tags });
+    const createdPost = new postMessage({...post, creator: req.userId,
+        createdAt: new Date().toISOString()  });
 
     try {
         insertedPost = await createdPost.save();
@@ -102,7 +103,7 @@ const likePost = async (req, res) => {
 
         const updatedPost = await postMessage.findByIdAndUpdate(_id, post, { new: true});
 
-        res.json(updatedPost);
+        res.status(200).json(updatedPost);
 
     }catch(err){
         res.status(404).send(err)
