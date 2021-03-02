@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {useDispatch} from "react-redux";
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Avatar, Button, Paper, Grid, Typography, Container } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { GoogleLogin } from "react-google-login";
@@ -38,6 +38,7 @@ const Auth = () => {
     const handleShowPassword = () => setShowPassword(!showPassword);
 
     const switchMode = () => {
+        setForm(initialState);
         setIsSignup((prevIsSignup) => !prevIsSignup);
         setShowPassword(false);
     };
