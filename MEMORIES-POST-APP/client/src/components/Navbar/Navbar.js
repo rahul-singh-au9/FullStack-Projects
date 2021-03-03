@@ -53,7 +53,7 @@ const Navbar = () => {
           <Toolbar className={classes.toolbar}>
 
             {
-              user ?. result ? (
+              user?.result? (
                 <div className = {classes.profile}>
 
                   <Avatar className={classes.purple}

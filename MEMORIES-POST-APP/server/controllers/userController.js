@@ -1,8 +1,10 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
+const dotenv = require("dotenv");
+dotenv.config();
 
-const sercet = "this is a super sercet key for hashing";
+// const process.env.SECRET = "this is a super process.env.SECRET key for hashing";
 
 const signup = async (req, res) => {
 
@@ -24,7 +26,7 @@ const signup = async (req, res) => {
       name: `${firstName} ${lastName}`
     });
 
-    const token = jwt.sign({email: result.email, id: result._id}, sercet, {expiresIn: "1h"});
+    const token = jwt.sign({email: result.email, id: result._id}, process.env.SECRET, {expiresIn: "1h"});
 
     res.status(201).json({result, token});
 
@@ -58,7 +60,7 @@ const signin = async (req, res) => {
     const token = jwt.sign({
       email: oldUser.email,
       id: oldUser._id
-    }, sercet, {expiresIn: "1h"});
+    }, process.env.SECRET, {expiresIn: "1h"});
 
     res.status(200).json({result: oldUser, token})
     

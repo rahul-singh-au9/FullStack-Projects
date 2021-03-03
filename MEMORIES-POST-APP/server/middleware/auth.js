@@ -4,8 +4,8 @@
 // click the like button --> auth middleware(next) --> like controller
 
 const jwt = require("jsonwebtoken");
-
-const sercet = "this is a super sercet key for hashing";
+const dotenv = require("dotenv");
+dotenv.config();
 
 const auth = async (req, res, next) => {
 
@@ -19,7 +19,7 @@ const auth = async (req, res, next) => {
 
 
     if(token && isCustomAuth){
-      decodeData = jwt.verify(token, sercet);
+      decodeData = jwt.verify(token, process.env.SECRET);
 
       req.userId = decodeData?.id;
 
@@ -29,7 +29,6 @@ const auth = async (req, res, next) => {
 
       req.userId = decodeData?.sub;
                               // sub is simply google's name for a specific id that         differentiates every single google user
-
     }
 
     next();
