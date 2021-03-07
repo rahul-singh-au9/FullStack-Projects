@@ -23,12 +23,12 @@ const Form = ({ currentId, setCurrentId }) => {
     const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
 
     useEffect(() => {
-      if (post) setPostData(post);
+        if (post) setPostData(post);
     }, [post]);
 
     const clear = () => {
-      setCurrentId(0);
-      setPostData({ title: "", message: "", tags: "", selectedFile: "" });
+        setCurrentId(0);
+        setPostData({ title: "", message: "", tags: "", selectedFile: "" });
     };
 
     const handleSubmit = async (e) => {
@@ -52,7 +52,7 @@ const Form = ({ currentId, setCurrentId }) => {
         return (
             <Paper className={classes.paper}>
                 <Typography variant="h6" align="center">
-                    Please Sign In to create your own memories and like other's memories.
+                    Please Sign In to create your own Coupons and get access to other's Coupons.
                 </Typography>
             </Paper>
         );
@@ -69,13 +69,13 @@ const Form = ({ currentId, setCurrentId }) => {
             onSubmit={handleSubmit}
             >
                 <Typography variant="h6">
-                    {currentId ? `Editing "${post.title}"` : 'Creating a Memory'}
+                    {currentId ? `Editing "${post.title}"` : 'Creating a Coupon'}
                 </Typography>
 
                 <TextField
                 name="title"
                 variant="outlined"
-                label="Title"
+                label="coupon code"
                 fullWidth
                 value={postData.title}
                 onChange={(e) => setPostData({ ...postData, title: e.target.value })}
@@ -84,7 +84,7 @@ const Form = ({ currentId, setCurrentId }) => {
                 <TextField
                 name="message"
                 variant="outlined"
-                label="Message"
+                label="description- discount"
                 fullWidth multiline
                 rows={4}
                 value={postData.message}
@@ -94,7 +94,7 @@ const Form = ({ currentId, setCurrentId }) => {
                 <TextField
                 name="tags"
                 variant="outlined"
-                label="Tags (coma separated)"
+                label="websites (coma separated)"
                 fullWidth
                 value={postData.tags}
                 onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })}
@@ -116,7 +116,7 @@ const Form = ({ currentId, setCurrentId }) => {
                 type="submit"
                 fullWidth
                 >
-                  Submit
+                Submit
                 </Button>
 
                 <Button
@@ -126,7 +126,7 @@ const Form = ({ currentId, setCurrentId }) => {
                 onClick={clear}
                 fullWidth
                 >
-                  Clear
+                Clear
                 </Button>
             </form>
         </Paper>

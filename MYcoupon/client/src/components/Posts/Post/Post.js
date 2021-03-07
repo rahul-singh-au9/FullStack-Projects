@@ -47,7 +47,7 @@ const Post = ({ post, setCurrentId }) => {
 
           </div>
 
-            {
+            {/* {
               (user?.result?.googleId === post?.creator || user?.result?._id === post?.creator)
 
               &&
@@ -64,7 +64,7 @@ const Post = ({ post, setCurrentId }) => {
 
                 </div>
               )
-            }
+            } */}
 
 
           <div className={classes.details}>
@@ -73,7 +73,7 @@ const Post = ({ post, setCurrentId }) => {
             variant="body2"
             color="textSecondary"
             component="h2"
-            >{post.tags.map((tag) => `#${tag} `)}
+            ><b>websites -</b>{post.tags.map((tag) => `#${tag} `)}
             </Typography>
 
           </div>
@@ -82,27 +82,36 @@ const Post = ({ post, setCurrentId }) => {
             className={classes.title} gutterBottom
             variant="h5" component="h2"
           >
-            {post.title}
+          <b>  coupon code - </b>{post.title}
+          </Typography>
+
+          <Typography
+            className={classes.title} gutterBottom
+            variant="h5" component="h2"
+          >
+          <b>Token key -</b><br/>{post.name}{post.title}
           </Typography>
 
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">
-              {post.message}
+            <b>   validity - {moment().format("MMM Do YY")}
+                  <br/> discount -   {post.message}
+            </b>
             </Typography>
           </CardContent>
 
           <CardActions className={classes.cardActions}>
 
-            <Button size="small"
+            {/* <Button size="small"
             color="primary"
             disabled={!user?.result}
             onClick={() => dispatch(likePost(post._id))}>
 
                 <Likes/>
 
-            </Button>
+            </Button> */}
 
-            {
+            {/* {
               (user?.result?.googleId === post?.creator || user?.result?._id === post?.creator)
 
               &&
@@ -113,7 +122,7 @@ const Post = ({ post, setCurrentId }) => {
               </Button>
               )
 
-            }
+            } */}
 
           </CardActions>
       </Card>
