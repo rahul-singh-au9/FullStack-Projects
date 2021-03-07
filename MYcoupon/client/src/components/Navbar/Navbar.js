@@ -43,10 +43,11 @@ const Navbar = () => {
         <AppBar className={classes.appBar} position="static" color="inherit">
 
           <div className={classes.brandContainer}>
-              <Typography component={Link} to="/home" className={classes.heading} variant="h2" align="center">
-                MYcoupon.com
+              <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">
+                Memory Bank
               </Typography>
 
+              <img className={classes.image} src="https://i.ibb.co/DtQRbdF/writing.png" alt="icon" height="60" />
           </div>
 
           <Toolbar className={classes.toolbar}>
