@@ -26,7 +26,7 @@ const Navbar = () => {
       }
 
       setUser(JSON.parse(localStorage.getItem("profile")))
-      
+
     },[location]);
 
     const logout = () => {
